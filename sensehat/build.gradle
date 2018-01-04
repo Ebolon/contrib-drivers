@@ -34,9 +34,8 @@ dependencies {
     androidTestImplementation 'com.google.android.things:androidthings:0.6-devpreview'
     androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'com.android.support.test:rules:0.5'
-
-    compile project(':hts221')
-    compile project(':lps25h')
+    implementation project(':hts221')
+    implementation project(':lps25h')
 }
 
 android {

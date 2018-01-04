@@ -147,7 +147,7 @@ public class Hts221SensorDriver implements AutoCloseable {
 
         private UserSensor getUserSensor() {
             if (mUserSensor == null) {
-                mUserSensor = UserSensor.builder()
+                mUserSensor = new UserSensor.Builder()
                         .setType(Sensor.TYPE_RELATIVE_HUMIDITY)
                         .setName(DRIVER_NAME)
                         .setVendor(DRIVER_VENDOR)
@@ -195,7 +195,7 @@ public class Hts221SensorDriver implements AutoCloseable {
 
         private UserSensor getUserSensor() {
             if (mUserSensor == null) {
-                mUserSensor = UserSensor.builder()
+                mUserSensor = new UserSensor.Builder()
                         .setType(Sensor.TYPE_AMBIENT_TEMPERATURE)
                         .setName(DRIVER_NAME)
                         .setVendor(DRIVER_VENDOR)
