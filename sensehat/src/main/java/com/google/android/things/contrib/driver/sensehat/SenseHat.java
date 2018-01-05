@@ -53,7 +53,6 @@ public class SenseHat implements AutoCloseable {
     public SenseHat() throws IOException {
         PeripheralManagerService pioService = new PeripheralManagerService();
         i2cDevice = pioService.openI2cDevice(I2C_BUS, I2C_ADDRESS);
-
         if (!isAttached()) {
             throw new IOException("Sense HAT is not attached");
         }
@@ -81,7 +80,9 @@ public class SenseHat implements AutoCloseable {
      * @throws IOException
      */
     private boolean isAttached() throws IOException {
-        return i2cDevice != null && i2cDevice.readRegByte(SENSE_HAT_REG_WHO_AM_I) == 's';
+        // BCM I2C clock stretching bug workaround
+        int wai = i2cDevice.readRegByte(SENSE_HAT_REG_WHO_AM_I) & 0x7F;
+        return i2cDevice != null && wai == 's';
     }
 
     // 8×8 RGB LED matrix
